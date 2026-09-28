@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistem Akuntansi Petty Cash Cafe</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Google & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Sidebar / Navigasi -->
+  <aside class="sidebar">
+    <div class="logo">
+      <i class="fa-solid => fa-mug-hot"></i>
+      <h2>KopiKita <span>Petty Cash</span></h2>
+    </div>
+    <nav>
+      <ul>
+        <li class="active" onclick="switchTab('input-section')"><i class="fa-solid fa-pen-to-square"></i> Input Transaksi</li>
+        <li onclick="switchTab('jurnal-section')"><i class="fa-solid fa-book"></i> Jurnal Umum</li>
+        <li onclick="switchTab('ledgers-section')"><i class="fa-solid fa-list-check"></i> Buku Besar</li>
+        <li onclick="switchTab('laporan-section')"><i class="fa-solid fa-chart-line"></i> Laporan Keuangan</li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Konten Utama -->
+  <main class="main-content">
+    
+    <!-- Dashboard Ringkasan -->
+    <header class="top-cards">
+      <div class="card saldo">
+        <h3><i class="fa-solid fa-wallet"></i> Saldo Kas Kecil</h3>
+        <p id="total-saldo">Rp 0</p>
+      </div>
+      <div class="card pengeluaran">
+        <h3><i class="fa-solid fa-arrow-down-long"></i> Total Pengeluaran</h3>
+        <p id="total-pengeluaran">Rp 0</p>
+      </div>
+    </header>
+
+    <!-- SECTION 1: Form Input Transaksi -->
+    <section id="input-section" class="tab-content active">
+      <h2><i class="fa-solid fa-plus-circle"></i> Catat Transaksi Pengeluaran</h2>
+      <form id="form-transaksi">
+        <div class="form-group">
+          <label>Tanggal Transaksi</label>
+          <input type="date" id="tgl-transaksi" required>
+        </div>
+        <div class="form-group">
+          <label>Keterangan / Penggunaan</label>
+          <input type="text" id="keterangan" placeholder="Contoh: Beli Es Batu, Isi Ulang Galon" required>
+        </div>
+        <div class="form-group">
+          <label>Kategori Akun (Beban)</label>
+          <select id="kategori-akun" required>
+            <option value="Beban Bahan Baku">Beban Bahan Baku (Es batu, susu, kopi)</option>
+            <option value="Beban Perlengkapan Cafe">Beban Perlengkapan (Sedotan, cup, tissue)</option>
+            <option value="Beban Kebersihan & Sanitasi">Beban Kebersihan (Sabun, plastik sampah)</option>
+            <option value="Beban Transportasi / Kurir">Beban Transportasi</option>
+            <option value="Beban Lain-lain">Beban Lain-lain</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Jumlah (Rp)</label>
+          <input type="number" id="jumlah" placeholder="50000" required>
+        </div>
+        <button type="submit" class="btn-primary"><i class="fa-solid fa-paper-plane"></i> Simpan Transaksi</button>
+      </form>
+    </section>
+
+    <!-- SECTION 2: Jurnal Umum -->
+    <section id="jurnal-section" class="tab-content">
+      <h2><i class="fa-solid fa-book"></i> Jurnal Umum Petty Cash</h2>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Tanggal</th>
+              <th>Keterangan Akun</th>
+              <th>Ref</th>
+              <th>Debet (Rp)</th>
+              <th>Kredit (Rp)</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-jurnal">
+            <!-- Isi Jurnal via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Buku Besar -->
+    <section id="ledgers-section" class="tab-content">
+      <h2><i class="fa-solid fa-list-check"></i> Buku Besar Kas Kecil</h2>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Tanggal</th>
+              <th>Keterangan</th>
+              <th>Debet (Rp)</th>
+              <th>Kredit (Rp)</th>
+              <th>Saldo (Rp)</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-bukubesar">
+            <!-- Isi Buku Besar via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Laporan Keuangan (Ringkasan Beban) -->
+    <section id="laporan-section" class="tab-content">
+      <h2><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Pengeluaran Kas Kecil</h2>
+      <div class="laporan-card">
+        <h3>Rincian Beban Periode Ini</h3>
+        <ul id="list-laporan-beban">
+          <!-- Rincian Beban via JS -->
+        </ul>
+        <hr>
+        <div class="total-laporan">
+          <strong>Total Beban Operasional Kas Kecil: </strong>
+          <span id="grand-total-beban">Rp 0</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
